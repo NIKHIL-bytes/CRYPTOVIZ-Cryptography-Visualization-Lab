@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="style.css">
+<title>Cryptography Visualization Platform</title>
+</head>
+<body>
+
+<!-- ═══ HOME ═══ -->
+<div id="home" class="screen active">
+  <div class="grid-bg"></div>
+  <div class="scan-line"></div>
+  <div class="logo-title">CRYPTOVIZ</div>
+  <div class="logo-sub">[ Cryptography Visualization Lab ]</div>
+  <div class="tagline">Master cryptographic algorithms through step-by-step visual simulation, mathematical explanation, and interactive learning. Built for students and beginners.</div>
+  <button class="btn-primary" onclick="showScreen('algo-select')"><span>▶ START LEARNING</span></button>
+  <div class="categories-row">
+    <span class="cat-pill green" onclick="showScreen('algo-select')">Classical Ciphers</span>
+    <span class="cat-pill blue" onclick="showScreen('algo-select')">Symmetric Encryption</span>
+    <span class="cat-pill purple" onclick="showScreen('algo-select')">Asymmetric / RSA</span>
+    <span class="cat-pill yellow" onclick="showScreen('algo-select')">Key Exchange</span>
+    <span class="cat-pill blue" onclick="showScreen('algo-select')">Hashing Algorithms</span>
+    <span class="cat-pill purple" onclick="showScreen('algo-select')">Digital Signatures</span>
+  </div>
+</div>
+
+<!-- ═══ ALGO SELECT ═══ -->
+<div id="algo-select" class="screen">
+  <div class="top-bar">
+    <button class="back-btn" onclick="showScreen('home')">← HOME</button>
+    <div class="page-title">SELECT ALGORITHM</div>
+    <div class="mode-selector">
+      <button class="mode-btn active" onclick="setMode('beginner',this)">BEGINNER</button>
+      <button class="mode-btn" onclick="setMode('intermediate',this)">INTERMEDIATE</button>
+      <button class="mode-btn" onclick="setMode('advanced',this)">ADVANCED</button>
+    </div>
+  </div>
+  <div class="algo-grid">
+    <div class="algo-cat">
+      <div class="cat-title" style="color:var(--neon-green)"><div class="cat-dot" style="background:var(--neon-green)"></div>Classical Ciphers</div>
+      <div class="algo-item" onclick="openAlgo('caesar')"><span class="algo-icon">🔐</span><span class="algo-name">Caesar Cipher</span><span class="algo-badge" style="border-color:var(--neon-green);color:var(--neon-green)">CLASSIC</span></div>
+      <div class="algo-item" onclick="openAlgo('shift')"><span class="algo-icon">⇒</span><span class="algo-name">Shift Cipher</span></div>
+      <div class="algo-item" onclick="openAlgo('railfence')"><span class="algo-icon">⛩</span><span class="algo-name">Rail Fence Cipher</span></div>
+      <div class="algo-item" onclick="openAlgo('playfair')"><span class="algo-icon">⊞</span><span class="algo-name">Playfair Cipher</span></div>
+      <div class="algo-item" onclick="openAlgo('hill')"><span class="algo-icon">⬡</span><span class="algo-name">Hill Cipher</span></div>
+      <div class="algo-item" onclick="openAlgo('substitution')"><span class="algo-icon">↔</span><span class="algo-name">Substitution Cipher</span></div>
+    </div>
+    <div class="algo-cat">
+      <div class="cat-title" style="color:var(--neon-blue)"><div class="cat-dot" style="background:var(--neon-blue)"></div>Symmetric Encryption</div>
+      <div class="algo-item" onclick="openAlgo('des')"><span class="algo-icon">🔑</span><span class="algo-name">DES</span><span class="algo-badge" style="border-color:var(--neon-blue);color:var(--neon-blue)">64-BIT</span></div>
+      <div class="algo-item" onclick="openAlgo('3des')"><span class="algo-icon">🔑</span><span class="algo-name">Triple DES</span></div>
+      <div class="algo-item" onclick="openAlgo('aes')"><span class="algo-icon">🛡</span><span class="algo-name">AES</span><span class="algo-badge" style="border-color:var(--neon-blue);color:var(--neon-blue)">128-BIT</span></div>
+    </div>
+    <div class="algo-cat">
+      <div class="cat-title" style="color:var(--neon-purple)"><div class="cat-dot" style="background:var(--neon-purple)"></div>Asymmetric Encryption</div>
+      <div class="algo-item" onclick="openAlgo('rsa')"><span class="algo-icon">🔏</span><span class="algo-name">RSA</span><span class="algo-badge" style="border-color:var(--neon-purple);color:var(--neon-purple)">PUBLIC</span></div>
+      <div class="algo-item" onclick="openAlgo('elgamal')"><span class="algo-icon">∞</span><span class="algo-name">ElGamal</span></div>
+      <div class="algo-item" onclick="openAlgo('rabin')"><span class="algo-icon">√</span><span class="algo-name">Rabin</span></div>
+    </div>
+    <div class="algo-cat">
+      <div class="cat-title" style="color:var(--neon-yellow)"><div class="cat-dot" style="background:var(--neon-yellow)"></div>Key Exchange</div>
+      <div class="algo-item" onclick="openAlgo('dh')"><span class="algo-icon">⇄</span><span class="algo-name">Diffie-Hellman</span><span class="algo-badge" style="border-color:var(--neon-yellow);color:var(--neon-yellow)">EXCHANGE</span></div>
+    </div>
+    <div class="algo-cat">
+      <div class="cat-title" style="color:var(--neon-blue)"><div class="cat-dot" style="background:var(--neon-blue)"></div>Hashing Algorithms</div>
+      <div class="algo-item" onclick="openAlgo('md5')"><span class="algo-icon">#</span><span class="algo-name">MD5</span><span class="algo-badge" style="border-color:#ff4466;color:#ff4466">LEGACY</span></div>
+      <div class="algo-item" onclick="openAlgo('sha1')"><span class="algo-icon">#</span><span class="algo-name">SHA-1</span></div>
+      <div class="algo-item" onclick="openAlgo('sha256')"><span class="algo-icon">#</span><span class="algo-name">SHA-256</span><span class="algo-badge" style="border-color:var(--neon-green);color:var(--neon-green)">SECURE</span></div>
+      <div class="algo-item" onclick="openAlgo('sha512')"><span class="algo-icon">#</span><span class="algo-name">SHA-512</span></div>
+      <div class="algo-item" onclick="openAlgo('blake2')"><span class="algo-icon">#</span><span class="algo-name">BLAKE2</span></div>
+    </div>
+    <div class="algo-cat">
+      <div class="cat-title" style="color:var(--neon-purple)"><div class="cat-dot" style="background:var(--neon-purple)"></div>Digital Signatures</div>
+      <div class="algo-item" onclick="openAlgo('dsa')"><span class="algo-icon">✍</span><span class="algo-name">DSA Signing</span></div>
+      <div class="algo-item" onclick="openAlgo('verify')"><span class="algo-icon">✔</span><span class="algo-name">Sig Verification</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ VISUALIZER ═══ -->
+<div id="visualizer" class="screen">
+  <div class="viz-layout">
+    <!-- left sidebar -->
+    <div class="sidebar">
+      <div class="sidebar-title">STEPS</div>
+      <div id="step-list" class="step-list"></div>
+    </div>
+    <!-- main area -->
+    <div class="main-viz" id="main-viz">
+      <div class="viz-header" id="viz-title">Algorithm</div>
+      <div id="viz-content"></div>
+    </div>
+    <!-- right panel -->
+    <div class="right-panel">
+      <div class="sidebar-title">EXPLANATION</div>
+      <div id="explain-box" class="explain-card"><h4>Step Info</h4><span id="explain-text">Select a step to begin.</span></div>
+      <div class="sidebar-title" style="margin-top:.5rem">FORMULA</div>
+      <div id="formula-box" class="formula-box" style="font-size:.75rem;line-height:1.9"></div>
+      <div class="sidebar-title" style="margin-top:.5rem">MODE</div>
+      <div id="mode-display" class="mode-badge mode-beginner">BEGINNER</div>
+    </div>
+    <!-- inputs -->
+    <div class="input-panel" id="input-panel" style="grid-column:1/-1;grid-row:auto"></div>
+    <!-- progress -->
+    <div class="progress-bar" style="grid-column:1/-1"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
+    <!-- controls -->
+    <div class="ctrl-bar" style="grid-column:1/-1">
+      <button class="back-btn" onclick="showScreen('algo-select')">← BACK</button>
+      <button class="ctrl-btn" onclick="prevStep()">◀ PREV</button>
+      <button class="ctrl-btn green" onclick="nextStep()">NEXT ▶</button>
+      <button class="ctrl-btn" id="play-btn" onclick="toggleAutoplay()">▶ AUTOPLAY</button>
+      <button class="try-btn" onclick="tryExample()">⚡ TRY EXAMPLE</button>
+      <button class="try-btn" onclick="randomKey()">🎲 RANDOM KEY</button>
+      <div class="speed-row">
+        <span style="font-size:.65rem;color:var(--text2);font-family:'Share Tech Mono',monospace">SPEED</span>
+        <input type="range" class="speed-slider" min="1" max="5" value="3" id="speed-slider">
+      </div>
+    </div>
+  </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
